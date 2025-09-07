@@ -179,6 +179,23 @@
       transform: translateY(0) scale(1);
     }
 
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 10px;
+      height: 14px;
+      opacity: 0.9;
+      animation: fall linear forwards;
+      z-index: 9999;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotateZ(360deg);
+        opacity: 0;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -215,7 +232,6 @@
   </div>
 
   <script>
-    // Reveal message toggle + small confetti (simple)
     const btn = document.getElementById('revealBtn');
     const msg = document.getElementById('message');
     const hearts = document.getElementById('hearts');
@@ -231,6 +247,7 @@
         startHearts();
         createSparkles();
         playChime();
+        launchConfetti(); // 🎉 kutlama
       } else {
         msg.classList.remove('show');
         btn.innerHTML = '💖 Mesajı Göster';
@@ -261,7 +278,7 @@
       hearts.innerHTML = '';
     }
 
-    // small sparkle dots
+    // Sparkles
     let sparkleTimeouts = [];
     function createSparkles(){
       clearSparkles();
@@ -284,7 +301,21 @@
       sparkles.innerHTML = '';
     }
 
-    // small audio chime using Web Audio API
+    // Confetti
+    function launchConfetti(){
+      for(let i=0; i<70; i++){
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random()*100 + "vw";
+        confetti.style.backgroundColor = `hsl(${Math.random()*360}, 80%, 60%)`;
+        confetti.style.animationDuration = (2 + Math.random()*2) + "s";
+        confetti.style.transform = `rotate(${Math.random()*360}deg)`;
+        document.body.appendChild(confetti);
+        setTimeout(()=> confetti.remove(), 4000);
+      }
+    }
+
+    // Audio chime
     function playChime(){
       try {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -306,17 +337,12 @@
         o.start(now);
         o.stop(now + 1.05);
       } catch(e){
-        // audio may be blocked by browser autoplay policy — ignore gracefully
+        // audio policy
       }
     }
 
-    // small accessibility: reveal message on load after 800ms (optional)
-    // Comment out next line if you prefer manual only:
-    // setTimeout(()=>{ btn.click(); }, 900);
-
-    // Personalization: If you want the signature to show a name, change the text below:
-    document.getElementById('giver').textContent = 'Adın'; // örn: 'Ahmet'
-
+    // İmza için isim değiştir
+    document.getElementById('giver').textContent = 'Ebrar';
   </script>
 </body>
 </html>
