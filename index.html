@@ -7,14 +7,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg1: #ff9a9e;
-      --bg2: #fad0c4;
-      --accent: #ff2d95;
-      --muted: rgba(255,255,255,0.85);
+      --bg1: #a18cd1;      /* Lila */
+      --bg2: #fbc2eb;      /* Açık pembe */
+      --accent: #ff4e8e;   /* Canlı pembe */
+      --muted: rgba(255,255,255,0.92);
+      --btn-bg1: #fff1fa;
+      --btn-bg2: #e1eaff;
+      --btn-text: #a80055;
     }
     html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;}
     body{
-      background: linear-gradient(135deg,var(--bg1),var(--bg2));
+      background: linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 100%);
       display:flex;
       align-items:center;
       justify-content:center;
@@ -27,7 +30,7 @@
       width:92%;
       max-width:920px;
       min-height:540px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
       border-radius:20px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.18);
       padding:40px;
@@ -57,7 +60,7 @@
       letter-spacing: -1px;
       font-weight:800;
       color:var(--muted);
-      text-shadow: 0 6px 24px rgba(0,0,0,0.25);
+      text-shadow: 0 6px 32px rgba(160, 76, 255, 0.22), 0 2px 8px rgba(0,0,0,0.13);
       transform-origin:center;
       animation: heartbeat 1.6s ease-in-out infinite;
     }
@@ -78,7 +81,7 @@
     }
 
     .messageBox{
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.04));
       border-radius:14px;
       padding:18px 20px;
       color: #fff;
@@ -92,14 +95,14 @@
       display:inline-flex;
       gap:10px;
       align-items:center;
-      background: linear-gradient(90deg, #fff 0%, #ffe0f2 100%);
-      color:#c7006b;
+      background: linear-gradient(90deg, var(--btn-bg1) 0%, var(--btn-bg2) 100%);
+      color:var(--btn-text);
       border:none;
       padding:12px 18px;
       font-weight:700;
       border-radius:12px;
       cursor:pointer;
-      box-shadow: 0 8px 20px rgba(199,7,107,0.18);
+      box-shadow: 0 8px 24px rgba(160,76,255,0.13);
       transition: transform .14s ease, box-shadow .14s ease;
     }
     .btn:active{ transform: translateY(2px) scale(.995); }
@@ -116,6 +119,7 @@
       animation: floatUp linear infinite;
       font-size: 18px;
       text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      color: var(--accent);
     }
     @keyframes floatUp{
       0%{ transform: translateY(30vh) scale(0.6) rotate(0deg); opacity:0; }
@@ -123,34 +127,26 @@
       100%{ transform: translateY(-30vh) scale(1.15) rotate(360deg); opacity:0; }
     }
 
-    /* Right side heart art */
-    .bigHeart{
-      width:220px;height:220px;border-radius:50%;
-      display:inline-grid;place-items:center;
-      background: radial-gradient(circle at 30% 30%, #fff2, transparent 30%), linear-gradient(135deg,#ff6fa3,#ff2d95 60%);
-      box-shadow: 0 20px 60px rgba(255,45,149,0.18);
-      transform: rotate(-12deg);
+    /* Right side photo */
+    .bigPhoto {
+      max-width: 220px;
+      max-height: 220px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 20px 44px rgba(160,76,255,0.18);
+      border: 3px solid #fff3;
     }
-    .bigHeart:before, .bigHeart:after{
-      content:"";
-      position:absolute;
-      width:140px;height:140px;background:inherit;border-radius:50%;
+    @media (max-width:720px){
+      .card{ padding:28px; min-height:600px; flex-direction:column; align-items:center; justify-content:flex-start; gap:18px;}
+      .right{ order:-1; margin-bottom:6px; }
+      .bigPhoto { max-width: 170px; max-height: 170px; }
     }
-    .bigHeart:before{ transform: translate(-55px,-40px) rotate(-40deg); }
-    .bigHeart:after{ transform: translate(55px,-40px) rotate(40deg); }
 
     .signature{
       margin-top:18px;
       font-weight:600;
-      color:rgba(255,255,255,0.85);
+      color:rgba(255,255,255,0.93);
       letter-spacing:0.4px;
-    }
-
-    /* Responsive tweaks */
-    @media (max-width:720px){
-      .card{ padding:28px; min-height:600px; flex-direction:column; align-items:center; justify-content:flex-start; gap:18px;}
-      .right{ order:-1; margin-bottom:6px; }
-      .bigHeart{ width:170px;height:170px; transform: rotate(0deg); }
     }
 
     /* small sparkle */
@@ -201,8 +197,8 @@
 <body>
   <div class="card" role="main" aria-label="Sevgiliye özel sayfa">
     <div class="left">
-      <h1 aria-hidden="true">Güzel kuğucummm <span style="color: #fff0;">♥</span> Seni Çok Seviyorum</h1>
-      <p class="lead">İyikimm ♥</p>
+      <h1 aria-hidden="true"><span style="color: #fff0;"></span> ♥ Seni Çok Seviyorum</h1>
+      <p class="lead">Güzel kuğucummmm, iyikimmm</p>
 
       <div class="messageBox reveal" id="message">
         <strong>Sevgilim,</strong>
@@ -218,9 +214,9 @@
     </div>
 
     <div class="right" aria-hidden="true">
-      <div class="bigHeart" aria-hidden="true"></div>
-      <div style="margin-top:18px;color:rgba(255,255,255,0.95);font-weight:700;">Sana bir sürprizim var!</div>
-      <div style="margin-top:10px;color:rgba(255,255,255,0.86);font-weight:500;font-size:14px;">Butona basınca küçük bir kutlama olacak 🎉</div>
+      <img src="image.webp" alt="Sevgilim" class="bigPhoto">
+      <div style="margin-top:18px;color:rgba(255,255,255,0.95);font-weight:700;"></div>
+      <div style="margin-top:10px;color:rgba(255,255,255,0.86);font-weight:500;font-size:14px;"></div>
     </div>
 
     <!-- floating hearts created by JS -->
@@ -232,6 +228,7 @@
   </div>
 
   <script>
+    // Reveal message toggle + small confetti (simple)
     const btn = document.getElementById('revealBtn');
     const msg = document.getElementById('message');
     const hearts = document.getElementById('hearts');
@@ -278,7 +275,7 @@
       hearts.innerHTML = '';
     }
 
-    // Sparkles
+    // small sparkle dots
     let sparkleTimeouts = [];
     function createSparkles(){
       clearSparkles();
@@ -301,21 +298,7 @@
       sparkles.innerHTML = '';
     }
 
-    // Confetti
-    function launchConfetti(){
-      for(let i=0; i<70; i++){
-        const confetti = document.createElement("div");
-        confetti.className = "confetti";
-        confetti.style.left = Math.random()*100 + "vw";
-        confetti.style.backgroundColor = `hsl(${Math.random()*360}, 80%, 60%)`;
-        confetti.style.animationDuration = (2 + Math.random()*2) + "s";
-        confetti.style.transform = `rotate(${Math.random()*360}deg)`;
-        document.body.appendChild(confetti);
-        setTimeout(()=> confetti.remove(), 4000);
-      }
-    }
-
-    // Audio chime
+    // small audio chime using Web Audio API
     function playChime(){
       try {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -337,12 +320,26 @@
         o.start(now);
         o.stop(now + 1.05);
       } catch(e){
-        // audio policy
+        // audio policy fallback
       }
     }
 
-    // İmza için isim değiştir
-    document.getElementById('giver').textContent = 'Ebrar';
+    // Confetti generator
+    function launchConfetti(){
+      for(let i=0; i<70; i++){
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random()*100 + "vw";
+        confetti.style.backgroundColor = `hsl(${Math.random()*360}, 80%, 60%)`;
+        confetti.style.animationDuration = (2 + Math.random()*2) + "s";
+        confetti.style.transform = `rotate(${Math.random()*360}deg)`;
+        document.body.appendChild(confetti);
+        setTimeout(()=> confetti.remove(), 4000);
+      }
+    }
+
+    // Personalization: isim
+    document.getElementById('giver').textContent = 'Ebrar'; // örn: 'Ahmet'
   </script>
 </body>
 </html>
